@@ -71,7 +71,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   transform-origin:left top;
   top:calc(50% - var(--o) * (50% - 92px));
   transform:translateY(calc(-50% * (1 - var(--o)))) scale(calc(1 - var(--o) * .66));
-  color:color-mix(in srgb,var(--ink) calc((1 - var(--o)) * 100%),var(--silver))}
+  color:color-mix(in srgb,var(--ink) calc((1 - var(--o)) * 100%),#747A84)}
 .stage .q span{background:linear-gradient(var(--pencil),var(--pencil)) no-repeat 0 56%/calc(var(--s) * 100%) .075em;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .04em;margin:0 -.04em}
 .stage .a{position:absolute;left:calc(var(--edge) + var(--rail));right:var(--edge);bottom:clamp(28px,9vh,120px);
   opacity:var(--r);transform:translateY(calc((1 - var(--r)) * 48px))}
@@ -130,11 +130,16 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
 .act{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2rem,5.4vw,4.6rem);line-height:1;letter-spacing:-.03em;max-width:16ch;padding-top:clamp(8px,3vh,32px)}
 .next{margin:clamp(72px,14vh,160px) calc(var(--edge) * -1) 0;padding:clamp(56px,10vh,120px) var(--edge);border-top:1px solid var(--hair);display:grid;gap:18px}
 .next p{font-size:15px;color:var(--tarnish)}
-.next a.up{text-decoration:none;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.6vw,5rem);line-height:1;letter-spacing:-.03em;max-width:18ch;color:var(--silver);transition:color .3s}
+.next a.up{text-decoration:none;font-family:var(--serif);font-size:clamp(2rem,5.6vw,5rem);line-height:1;letter-spacing:-.03em;max-width:18ch;color:#747A84;transition:color .3s}
 .next a.up:hover{color:var(--ink)}
 .case > .finale{margin:0 calc(var(--edge) * -1)}
 .back{font-size:15px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--pencil);padding-bottom:3px;justify-self:start}
 
+
+/* sturdier serif: Bodoni's hairlines thin out on real screens, so hold the optical size down and the weight up */
+.open h1,.stage .q,.stage .num,.case h1,.askbox h2,.act,.finale .sign b,.next a.up,.fig b,.press ul{font-weight:500;font-optical-sizing:none;font-variation-settings:"opsz" 44}
+.case .stand,blockquote,.post q,.pressgrid h2{font-weight:500;font-optical-sizing:none;font-variation-settings:"opsz" 22}
+.mast .name,.index button,.part h2,.work a i{font-weight:600;font-optical-sizing:none;font-variation-settings:"opsz" 14}
 
 /* halftone figures: dots at rest, type under the pointer */
 .tone{display:block;touch-action:pan-y;cursor:grab;will-change:transform;-webkit-user-select:none;user-select:none}
