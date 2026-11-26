@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jack Booth: seven problems</title>
+<meta name="description" content="Jack Booth solves big marketing problems for crypto and AI founders. Seven problems, what he did, and what happened.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plate:#F1F2F4;      /* cold paper, the ground */
+  --ink:#12151B;        /* text */
+  --silver:#9BA1AB;     /* quiet text, rules, resting numerals */
+  --tarnish:#5C626C;    /* secondary text */
+  --pencil:#D3212C;     /* the editor's red pencil: strikes and marks only */
+  --hair:#D5D8DD;       /* hairlines */
+  --serif:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --sans:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --edge:clamp(20px,5vw,72px);
+  --rail:clamp(0px,7vw,104px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--plate);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--pencil);outline-offset:4px}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--plate);padding:10px 14px;z-index:50}
+.skip:focus{left:12px;top:12px}
+[hidden]{display:none!important}
+
+/* masthead */
+.mast{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:baseline;padding:22px var(--edge);pointer-events:none}
+.mast a{pointer-events:auto;text-decoration:none}
+.mast{transition:background .25s,padding .25s,border-color .25s;border-bottom:1px solid transparent}
+.mast.is-solid{background:color-mix(in srgb,var(--plate) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom-color:var(--hair);padding-top:15px;padding-bottom:15px;pointer-events:auto}
+.mast .name{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em}
+.mast .ask{font-size:15px;font-weight:500;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:border-color .2s,color .2s}
+.mast .ask:hover{color:var(--pencil);border-color:var(--pencil)}
+
+/* index of seven */
+.index{position:fixed;left:var(--edge);top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:6px;transition:opacity .4s}
+.index.is-off{opacity:0;pointer-events:none}
+.index button{font-family:var(--serif);font-size:19px;line-height:1;color:var(--silver);width:44px;height:34px;text-align:left;position:relative;transition:color .25s}
+.index button::after{content:"";position:absolute;left:22px;top:50%;height:2px;width:0;background:var(--pencil);transition:width .35s cubic-bezier(.2,.7,.2,1)}
+.index button:hover{color:var(--ink)}
+.index button[aria-current="true"]{color:var(--ink)}
+.index button[aria-current="true"]::after{width:20px}
+
+/* opening */
+.open{min-height:100svh;display:grid;align-content:end;padding:104px var(--edge) clamp(32px,7vh,96px) calc(var(--edge) + var(--rail))}
+.open h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,min(10.5vw,16.5svh),10.5rem);line-height:.94;letter-spacing:-.035em;max-width:11ch}
+.open h1 span{display:block;opacity:0;transform:translateY(.35em);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.open h1 span:nth-child(2){animation-delay:.09s}
+.open h1 span:nth-child(3){animation-delay:.18s}
+.open h1 span:nth-child(4){animation-delay:.27s}
+.open .sub{margin-top:clamp(24px,4vh,44px);display:flex;gap:clamp(20px,5vw,72px);flex-wrap:wrap;align-items:end;justify-content:space-between;color:var(--tarnish);max-width:1100px}
+.open .sub p{max-width:34ch}
+.open .cue{display:flex;align-items:center;gap:14px;font-size:15px;color:var(--ink)}
+.open .cue i{display:block;width:64px;height:2px;background:var(--pencil);transform-origin:left;animation:draw 1.1s .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* a problem: tall section, pinned stage */
+.problem{height:260vh;position:relative;--s:0;--o:0;--r:0}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.stage .q{position:absolute;left:calc(var(--edge) + var(--rail));right:var(--edge);
+  font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,min(8.2vw,14svh),8.4rem);line-height:1;letter-spacing:-.03em;max-width:15ch;
+  transform-origin:left top;
+  top:calc(50% - var(--o) * (50% - 92px));
+  transform:translateY(calc(-50% * (1 - var(--o)))) scale(calc(1 - var(--o) * .66));
+  color:color-mix(in srgb,var(--ink) calc((1 - var(--o)) * 100%),var(--silver))}
+.stage .q span{background:linear-gradient(var(--pencil),var(--pencil)) no-repeat 0 56%/calc(var(--s) * 100%) .075em;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .04em;margin:0 -.04em}
+.stage .a{position:absolute;left:calc(var(--edge) + var(--rail));right:var(--edge);bottom:clamp(28px,9vh,120px);
+  opacity:var(--r);transform:translateY(calc((1 - var(--r)) * 48px))}
+.stage .num{font-family:var(--serif);font-weight:400;font-size:clamp(3.6rem,min(21vw,34svh),21rem);line-height:.8;letter-spacing:-.05em;font-variant-numeric:lining-nums;white-space:nowrap}
+.stage .num.long{font-size:clamp(3rem,min(14.6vw,34svh),15rem)}
+.stage .line{margin-top:clamp(14px,2.4vh,28px);display:flex;gap:clamp(16px,4vw,56px);align-items:baseline;justify-content:space-between;flex-wrap:wrap;max-width:1180px}
+.stage .line p{font-size:clamp(1.05rem,1.55vw,1.4rem);max-width:46ch;line-height:1.35}
+.read{font-size:15px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--pencil);padding-bottom:3px;white-space:nowrap;transition:color .2s}
+a.read:hover{color:var(--pencil)}
+.read.soon{border-color:var(--hair);color:var(--silver);font-weight:500}
+
+/* the eighth */
+form{display:grid;gap:18px;max-width:560px}
+label{display:grid;gap:6px;font-size:14px;color:var(--tarnish)}
+input{font:inherit;font-size:19px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);padding:8px 0;border-radius:0}
+input:focus{outline:0;border-color:var(--pencil);box-shadow:0 1px 0 var(--pencil)}
+.send{justify-self:start;margin-top:8px;background:var(--ink);color:var(--plate);font-weight:600;font-size:16px;padding:16px 26px;transition:background .2s,transform .12s}
+.send:hover{background:var(--pencil)}
+.send:active{transform:translateY(1px)}
+.note{font-size:15px;color:var(--tarnish);max-width:52ch}
+.note a{color:var(--ink)}
+
+/* case page */
+.case{padding:clamp(120px,20vh,220px) var(--edge) 0}
+.case .head{max-width:1280px;margin:0 auto}
+.case .date{font-size:15px;color:var(--tarnish);margin-bottom:clamp(18px,3vh,32px)}
+.case .date::before{content:"";display:block;width:64px;height:3px;background:var(--pencil);margin-bottom:18px;transform:scaleX(0);transform-origin:left}
+.case.is-in .date::before{transform:scaleX(1);transition:transform .8s .3s cubic-bezier(.2,.7,.2,1)}
+.case h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.9rem,9.4vw,9.6rem);line-height:.95;letter-spacing:-.035em;max-width:13ch}
+.case .stand{font-family:var(--serif);font-size:clamp(1.5rem,3.4vw,3rem);line-height:1.12;letter-spacing:-.015em;margin-top:clamp(22px,4vh,44px);max-width:22ch}
+.body{max-width:1280px;margin:clamp(64px,12vh,140px) auto 0;display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(56px,10vh,120px)}
+.part{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;border-top:1px solid var(--ink);padding-top:22px}
+.part h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,2.3vw,2rem);letter-spacing:-.01em}
+.part .copy{display:grid;gap:1.05em;max-width:60ch;font-size:clamp(1.06rem,1.35vw,1.22rem);line-height:1.6}
+blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(1.7rem,3.6vw,3.2rem);line-height:1.1;letter-spacing:-.015em;max-width:20ch;padding-left:.5em;border-left:3px solid var(--pencil)}
+blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:normal;font-size:14px;color:var(--tarnish);margin-top:14px;letter-spacing:0;line-height:1.4}
+.figs{display:grid}
+.fig{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:clamp(18px,3vh,30px) 0;border-bottom:1px solid var(--hair)}
+.fig:first-child{padding-top:0}
+.fig b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,9vw,8.4rem);line-height:.86;letter-spacing:-.045em;white-space:nowrap}
+.fig p{margin-top:10px;max-width:30ch;font-size:clamp(1.06rem,1.35vw,1.22rem)}
+.fig small{display:block;font-size:14px;color:var(--tarnish)}
+.work{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.work li{border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.work a{display:grid;grid-template-rows:auto 1fr auto;gap:14px;height:100%;min-height:210px;padding:22px;text-decoration:none;transition:background .25s}
+.work a i{font-family:var(--serif);font-style:normal;font-size:clamp(1.7rem,2.6vw,2.3rem);line-height:1;letter-spacing:-.02em}
+.work a b{font-weight:400;font-size:1.02rem;line-height:1.35;align-self:start}
+.work a small{font-size:14px;color:var(--tarnish)}
+.work a:hover{background:#E8EAED}
+.work a:hover i{color:var(--pencil)}
+.post{display:grid;gap:14px;padding:clamp(20px,3vw,32px);border:1px solid var(--ink);max-width:560px;text-decoration:none;transition:background .25s}
+.post:hover{background:#E8EAED}
+.post strong{font-weight:600;font-size:15px}
+.post q{font-family:var(--serif);font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.12;letter-spacing:-.015em;quotes:"\201C" "\201D"}
+.post small{font-size:14px;color:var(--tarnish)}
+.act{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2rem,5.4vw,4.6rem);line-height:1;letter-spacing:-.03em;max-width:16ch;padding-top:clamp(8px,3vh,32px)}
+.next{margin:clamp(72px,14vh,160px) calc(var(--edge) * -1) 0;padding:clamp(56px,10vh,120px) var(--edge);border-top:1px solid var(--hair);display:grid;gap:18px}
+.next p{font-size:15px;color:var(--tarnish)}
+.next a.up{text-decoration:none;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.6vw,5rem);line-height:1;letter-spacing:-.03em;max-width:18ch;color:var(--silver);transition:color .3s}
+.next a.up:hover{color:var(--ink)}
+.case > .finale{margin:0 calc(var(--edge) * -1)}
+.back{font-size:15px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--pencil);padding-bottom:3px;justify-self:start}
+
+
+/* halftone figures: dots at rest, type under the pointer */
+.tone{display:block;touch-action:pan-y;cursor:grab;will-change:transform;-webkit-user-select:none;user-select:none}
+.tone.is-held{cursor:grabbing}
+[data-follow]{will-change:translate}
+.open h1,.open .sub,.case .head h1,.case .head p{pointer-events:none}
+.open{position:relative}
+.open h1,.open .sub{position:relative;z-index:1}
+.open .tone{position:absolute;right:calc(var(--edge) + 1vw);bottom:0;height:min(90svh,66vw);aspect-ratio:225/520;z-index:0}
+.open .sub{max-width:min(1100px,56vw)}
+.case .head{position:relative}
+.case .head > p,.case .head > h1{position:relative;z-index:1}
+.case .head .tone{position:absolute;right:0;top:-24px;height:clamp(280px,35vw,520px);z-index:0}
+.case .head.has-fig h1{max-width:min(13ch,70%)}
+.case .head.has-fig .stand{max-width:min(22ch,60%)}
+@media (max-width:760px){
+  .open .tone{right:2vw;bottom:auto;top:60px;height:31svh}
+  .open .sub{max-width:none}
+  .case .head.has-fig h1,.case .head.has-fig .stand{max-width:none}
+  .case .head .tone{position:relative;right:auto;bottom:auto;height:36svh;margin:0 0 18px auto}
+}
+
+
+/* the closing scene: the stage in red halftone, the speaker in ink, the ask beside him */
+.finale{border-top:1px solid var(--hair)}
+.ask-scene{position:relative;min-height:min(100svh,900px);display:grid;align-items:center;overflow:hidden}
+.ask-scene .tone{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+.askbox{position:relative;z-index:1;margin-left:auto;width:min(54%,760px);padding:120px var(--edge) 80px 0;display:grid;gap:clamp(20px,3.4vh,36px);pointer-events:none}
+.askbox form{pointer-events:auto}
+.askbox h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(3.2rem,8.6vw,9rem);line-height:.9;letter-spacing:-.04em}
+.askbox .pitch{max-width:40ch;font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.4}
+.pressgrid{padding:clamp(56px,10vh,120px) var(--edge)}
+.pressgrid h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.4vw,4rem);letter-spacing:-.03em;line-height:1;margin-bottom:clamp(24px,4vh,44px)}
+.pressgrid ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));border-top:1px solid var(--ink);border-left:1px solid var(--hair)}
+.pressgrid li{border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.pressgrid a{display:grid;grid-template-rows:auto 1fr auto;gap:12px;height:100%;padding:18px 18px 20px;text-decoration:none;transition:background .25s}
+.pressgrid a:hover{background:#E8EAED}
+.pressgrid .tone{width:100%;height:auto;aspect-ratio:5/2;cursor:pointer}
+.pressgrid b{font-weight:500;font-size:1.02rem;line-height:1.3}
+.pressgrid small{font-size:14px;color:var(--tarnish)}
+.finale .sign{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding:clamp(28px,5vh,56px) var(--edge) clamp(22px,3.4vh,36px);background:var(--pencil);color:var(--plate)}
+.finale .sign b{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,11vw,11.5rem);line-height:.8;letter-spacing:-.04em}
+.finale .sign div{display:grid;gap:4px;font-size:15px;text-align:right;padding-bottom:.4em}
+.finale .sign a{color:var(--plate);text-decoration:none;border-bottom:1px solid currentColor;justify-self:end}
+.finale .sign a:hover{color:var(--ink);border-color:var(--ink)}
+@media (max-width:760px){
+  .ask-scene{display:block;min-height:0}
+  .ask-scene .tone{position:relative;inset:auto;height:58svh}
+  .askbox{width:auto;margin:0;padding:8px var(--edge) 56px}
+  .finale .sign{padding-bottom:84px}.finale .sign div{text-align:left}.finale .sign a{justify-self:start}
+}
+
+/* the pencil line that turns the page */
+.wipe{position:fixed;left:0;top:50%;height:3px;width:100%;background:var(--pencil);transform:scaleX(0);transform-origin:left;z-index:40;pointer-events:none}
+.wipe.go{animation:wipe .62s cubic-bezier(.6,0,.2,1)}
+@keyframes wipe{0%{transform:scaleX(0);transform-origin:left}49%{transform:scaleX(1);transform-origin:left}50%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+.view{transition:opacity .28s}
+.view.is-out{opacity:0}
+
+@media (min-width:900px){
+  .part{grid-template-columns:minmax(180px,3fr) minmax(0,9fr);gap:clamp(24px,4vw,64px)}
+}
+@media (max-width:760px){
+  :root{--rail:0px}
+  .index{left:0;right:0;top:auto;bottom:0;transform:none;flex-direction:row;justify-content:center;gap:0;padding:6px 8px calc(6px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--plate) 92%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--hair)}
+  .index button{width:44px;height:44px;text-align:center}
+  .index button::after{left:12px;top:auto;bottom:6px}
+  .stage .q{max-width:none;top:calc(44% - var(--o) * (44% - 84px));transform:translateY(calc(-50% * (1 - var(--o)))) scale(calc(1 - var(--o) * .5))}
+  .stage .a{bottom:92px}
+  .stage .line p{max-width:none}
+  .mast .name{font-size:19px}
+}
+@media (max-height:520px){
+  .stage .q{font-size:clamp(1.5rem,9svh,2.4rem);max-width:none}
+  .stage .num,.stage .num.long{font-size:clamp(2.6rem,min(14vw,30svh),7rem)}
+  .stage .line{margin-top:8px}
+  .stage .line p{font-size:1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .open h1 span{opacity:1;transform:none}
+  .problem{height:auto;--s:1;--o:0;--r:1}
+  .stage{position:static;height:auto;overflow:visible;padding:18vh var(--edge) 12vh calc(var(--edge) + var(--rail));display:grid;gap:6vh}
+  .stage .q,.stage .a{position:static;transform:none;top:auto}
+  .stage .q{color:var(--silver);font-size:clamp(1.8rem,4.4vw,3.6rem)}
+  .case .date::before{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#p1" data-jump="p1">Skip to the first problem</a>
+
+<header class="mast">
+  <a class="name" href="#home">Jack Booth</a>
+  <a class="ask" href="#home" data-jump="yours">Request a free X audit</a>
+</header>
+
+<nav class="index is-off" aria-label="The seven problems" id="index"></nav>
+
+<!-- HOME -->
+<main class="view" id="view-home">
+  <section class="open" id="top">
+    <canvas class="tone" data-src="img/mic.png" data-rows="140" role="img" aria-label="Jack Booth speaking on stage, holding a microphone"></canvas>
+    <h1><span data-follow=".5">I solve</span><span data-follow=".43">big marketing</span><span data-follow=".36">problems</span><span data-follow=".29">for founders.</span></h1>
+    <div class="sub" data-follow=".2">
+      <p>Fractional CMO and founder ghostwriter for crypto and AI companies. Here are seven problems I was handed, and what happened next.</p>
+      <div class="cue"><i></i>Scroll. The first one starts in a French jail.</div>
+    </div>
+  </section>
+
+  <section class="problem" id="p1" data-n="1">
+    <div class="stage">
+      <h2 class="q"><span>The CEO was in a French jail.</span></h2>
+      <div class="a">
+        <div class="num long" data-to="9000000" data-comma>9,000,000</div>
+        <div class="line"><p>people signed the letter I wrote to get him out.</p><a class="read" href="#freedurov">Read the #FreeDurov case</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem" id="p2" data-n="2">
+    <div class="stage">
+      <h2 class="q"><span>A blockchain beside 900 million users, and nobody using it.</span></h2>
+      <div class="a">
+        <div class="num" data-pre="$" data-from="28" data-to="780" data-suf="M">$780M</div>
+        <div class="line"><p>locked in TON DeFi, up from $28M, with 1.1 million daily active users. Then retention broke, and I fixed that too.</p><a class="read" href="#open-league">Read the Open League case</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem" id="p3" data-n="3">
+    <div class="stage">
+      <h2 class="q"><span>The NFT market was dead.</span></h2>
+      <div class="a">
+        <div class="num" data-pre="$" data-to="12" data-suf="M">$12M</div>
+        <div class="line"><p>sold in one Snoop Dogg drop, inside Telegram.</p><a class="read" href="#snoop">Read the Snoop case</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem" id="p4" data-n="4">
+    <div class="stage">
+      <h2 class="q"><span>A new launchpad needed its first big name to sell.</span></h2>
+      <div class="a">
+        <div class="num" data-pre="$" data-to="450" data-suf="K">$450K</div>
+        <div class="line"><p>of Telegram stickers sold with Snoop Dogg and Bored Ape Yacht Club.</p><a class="read" href="#mint">Read the Mint case</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem" id="p5" data-n="5">
+    <div class="stage">
+      <h2 class="q"><span>A new chain needed its first DeFi launch to land.</span></h2>
+      <div class="a">
+        <div class="num" data-pre="$" data-to="180" data-suf="M">$180M</div>
+        <div class="line"><p>locked in four days. The fastest DeFi start on any layer 1, per DefiLlama.</p><a class="read" href="#yuzuswap">Read the YuzuSwap case</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem" id="p6" data-n="6">
+    <div class="stage">
+      <h2 class="q"><span>Plenty of leads. No sales.</span></h2>
+      <div class="a">
+        <div class="num" data-pre="£" data-to="1" data-suf="M">£1M</div>
+        <div class="line"><p>in marketing revenue in one quarter, from zero, after I changed the strategy.</p><a class="read" href="#distributed">Read the Distributed case</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem" id="p7" data-n="7">
+    <div class="stage">
+      <h2 class="q"><span>$200K of media budget, and it had to count.</span></h2>
+      <div class="a">
+        <div class="num" data-pre="$" data-to="60" data-suf="M">$60M</div>
+        <div class="line"><p>in revenue for RewardPay in 14 months.</p><a class="read" href="#rewardpay">Read the RewardPay case</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="finale" id="yours">
+    <section class="ask-scene">
+      <canvas class="tone" data-src="img/finale.png" data-mode="scene" data-focus=".216" role="img" aria-label="Jack Booth on stage, the lighting rig above him and the stage floor beneath his feet"></canvas>
+      <div class="askbox">
+        <h2>What’s yours?</h2>
+        <p class="pitch">Send me your X handle. I’ll send back a one-page audit: your three best posts, why they worked, and three to write next. Free.</p>
+        <form class="audit" novalidate>
+          <label>Your X handle<input name="handle" autocomplete="off" placeholder="@yourhandle" required></label>
+          <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@company.com" required></label>
+          <label>What the company does, in a line<input name="company" autocomplete="off"></label>
+          <button class="send" type="submit">Request the audit</button>
+          <p class="note" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+    <section class="pressgrid" aria-label="Press coverage">
+      <h2>The work, as reported</h2>
+      <ul><li><a href="https://www.theblock.co/post/313292/set-telegram-ceo-durov-free-letter-surpasses-300000-signatures-on-messaging-app"><canvas class="tone" data-mode="word" data-word="The Block" role="img" aria-label="The Block"></canvas><b>Set Telegram CEO Durov free letter surpasses 2.7 million signatures</b><small>The Block. August 2024.</small></a></li><li><a href="https://techcrunch.com/2023/09/25/telegram-wechat-super-app-ton-foundation/"><canvas class="tone" data-mode="word" data-word="TechCrunch" role="img" aria-label="TechCrunch"></canvas><b>Telegram starts to look like a super app, echoing WeChat</b><small>TechCrunch. September 2023.</small></a></li><li><a href="https://www.cnbc.com/2024/04/19/messaging-app-telegram-to-allow-tether-stablecoin-payments.html"><canvas class="tone" data-mode="word" data-word="CNBC" role="img" aria-label="CNBC"></canvas><b>Telegram to allow Tether stablecoin payments</b><small>CNBC. April 2024.</small></a></li><li><a href="https://www.tmz.com/2025/07/09/snoop-dogg-telegram-sell-out-digital-gifts/"><canvas class="tone" data-mode="word" data-word="TMZ" role="img" aria-label="TMZ"></canvas><b>Snoop Dogg’s Telegram digital gifts sell out</b><small>TMZ. July 2025.</small></a></li><li><a href="https://www.coindesk.com/opinion/2024/06/20/telegram-is-cryptos-adoption-machine"><canvas class="tone" data-mode="word" data-word="CoinDesk" role="img" aria-label="CoinDesk"></canvas><b>Telegram is crypto’s adoption machine</b><small>CoinDesk. June 2024.</small></a></li><li><a href="https://cointelegraph.com/news/ton-raises-8-figure-sum-telegram-web3-super-app"><canvas class="tone" data-mode="word" data-word="Cointelegraph" role="img" aria-label="Cointelegraph"></canvas><b>TON raises 8-figure sum for Telegram Web3 super app</b><small>Cointelegraph. TON Foundation.</small></a></li><li><a href="https://cryptonews.com/news/bayc-and-pudgy-penguins-launch-on-ton-making-it-the-1-nft-blockchain-is-5-toncoin-coming/"><canvas class="tone" data-mode="word" data-word="CryptoNews" role="img" aria-label="CryptoNews"></canvas><b>BAYC and Pudgy Penguins launch on TON, making it the #1 NFT blockchain</b><small>CryptoNews. November 2024.</small></a></li><li><a href="https://cointelegraph.com/news/first-dex-on-oasis-network-hits-100m-tvl-in-24-hours"><canvas class="tone" data-mode="word" data-word="Cointelegraph" role="img" aria-label="Cointelegraph"></canvas><b>First DEX on Oasis Network hits $100M TVL in 24 hours</b><small>Cointelegraph. Oasis.</small></a></li><li><a href="https://blockworks.co/news/oasis-ecosystem-fund-hits-200m-after-binance-labs-investment"><canvas class="tone" data-mode="word" data-word="Blockworks" role="img" aria-label="Blockworks"></canvas><b>Oasis ecosystem fund hits $200M after Binance Labs investment</b><small>Blockworks. Oasis.</small></a></li><li><a href="https://uktechnews.co.uk/2021/05/07/elastic-teams%EF%B8%8F-startup-distributed-secures-5m-series-a-to-support-explosive-growth-and-ambitious-plans/"><canvas class="tone" data-mode="word" data-word="UKTN" role="img" aria-label="UKTN"></canvas><b>Distributed secures £5M Series A</b><small>UKTN. May 2021.</small></a></li></ul>
+    </section>
+    <div class="sign"><b>Jack Booth</b><div><span>Sterling, founded 2025. Bangkok.</span><a href="https://t.me/jackk">Telegram: t.me/jackk</a><a href="#home" data-jump="top">Back to the first problem</a></div></div>
+  </footer>
+</main>
+
+<!-- CASE (rendered from the data below) -->
+<main class="view case" id="view-case" hidden></main>
+
+<div class="wipe" id="wipe" aria-hidden="true"></div>
+
+<script>
+var CASES = {
+"freedurov": {n:1, fig:["stage",240], date:"TON Foundation, August 2024", h:"The CEO was in a French jail.", stand:"I wrote the letter. Nine million people signed it.",
+ parts:[
+  {h:"The problem", b:[
+   "On 24 August 2024, French police detained Pavel Durov at Le Bourget airport outside Paris. Durov founded Telegram. TON lives inside Telegram.",
+   "Toncoin fell on the news. The community was loud and scattered, with no single thing to point at.",
+   "I was running marketing at TON Foundation. We needed one message, and one place for people to put their name to it. Fast."]},
+  {h:"What I did", b:[
+   "We went loud on X first. The charge was simple: this arrest is political.",
+   "Two days in, the President of France answered it himself.",
+   {post:{who:"Emmanuel Macron on X, 26 August 2024", q:"It is in no way a political decision.", src:"As reported by the Associated Press", href:"https://www.pbs.org/newshour/world/macron-says-arrest-of-telegram-ceo-was-not-political"}},
+   "Then I wrote the letter. It was addressed to France and it asked for one thing: let him go.",
+   {quote:"A direct assault on a basic human right.", by:"From the #FreeDurov open letter, published by TON Society on 27 August 2024."},
+   "I helped design the mini app that carried it. People signed inside Telegram, the same app they were already using to talk about the arrest. No form on a website. No account to make."]},
+  {h:"The result", figs:[
+   {n:"2,064,678", t:"signatures in the first day.", src:"International Business Times, 28 August 2024", href:"https://ibtimes.com/open-letter-tied-tons-freedurov-campaign-gets-over-2m-signatures-1-day-3741069"},
+   {n:"7 million", t:"nearly, three days in.", src:"International Business Times, 30 August 2024", href:"https://www.ibtimes.com/telegram-quietly-updates-faq-pavel-durov-breaks-silence-france-arrest-3742178"},
+   {n:"9 million", t:"in total.", src:"Final count from the mini app."}]},
+  {h:"The work", work:[
+   {o:"Telegraph", t:"The open letter to France, as published", d:"27 August 2024", href:"https://telegra.ph/Open-Letter-to-France-08-27"},
+   {o:"The Block", t:"Set Telegram CEO Durov free letter surpasses 2.7 million signatures", d:"27 August 2024", href:"https://www.theblock.co/post/313292/set-telegram-ceo-durov-free-letter-surpasses-300000-signatures-on-messaging-app"},
+   {o:"Cointelegraph", t:"TON Society issues open letter to France urging Pavel Durov’s release", d:"27 August 2024", href:"https://cointelegraph.com/news/ton-society-issues-open-letter-france-urging-pavel-durov-release"},
+   {o:"CryptoSlate", t:"Telegram community condemns Pavel Durov’s arrest in open letter", d:"August 2024", href:"https://cryptoslate.com/telegram-community-condemns-pavel-durovs-arrest-in-open-letter-calls-it-violation-of-human-rights/"},
+   {o:"The Daily Hodl", t:"Toncoin community launches initiative to free Pavel Durov", d:"29 August 2024", href:"https://dailyhodl.com/2024/08/29/toncoin-blockchain-community-launches-initiative-to-free-telegram-founder-pavel-durov-after-france-arrest"}]}
+ ]},
+
+"open-league": {n:2, fig:["walk",157], date:"TON Foundation, 2024", h:"A blockchain beside 900 million users, and nobody using it.", stand:"I built the programme that took TON from $28M to $780M. Then I had to fix what it broke.",
+ parts:[
+  {h:"The problem", b:[
+   "TON sat inside Telegram, next to 900 million people. Its DeFi apps held $28M between them.",
+   "The users were one tap away and they weren’t coming. Nobody had given them a reason to."]},
+  {h:"What I did", b:[
+   "I created The Open League. Monthly seasons. Projects competed on a public leaderboard for token rewards, and users earned by using them.",
+   "TON Foundation put 30 million Toncoin behind it, worth about $115M at launch. Season one started on 1 April 2024.",
+   "I led a marketing team of 14 at the Foundation through it."]},
+  {h:"The result", figs:[
+   {n:"$780M", t:"locked in TON DeFi, up from $28M."},
+   {n:"1.1M", t:"daily active users."}]},
+  {act:"Then it broke."},
+  {h:"The second problem", b:[
+   "People came for tap-to-earn rewards and left when the rewards did.",
+   "My read: we had put too much weight on tap-to-earn, and too little on building projects worth staying for. We were filling a room with nothing in it."]},
+  {h:"What I did next", b:[
+   "I co-founded TON Society as a separate company and moved the focus. Less activating users. More recruiting developers.",
+   "We built a grassroots events function across 11 hubs, with 60 people running them. In 2024 that meant 182 events and 35,000 attendees.",
+   "The biggest was the Hackers League: bootcamps in 19 cities, then a global hackathon, from October to December 2024."]},
+  {h:"The result", figs:[
+   {n:"730", t:"developer teams brought into TON."},
+   {n:"55%", t:"of TON DeFi value locked now comes from projects built by community developers."}]},
+  {h:"The work", work:[
+   {o:"The Block", t:"TON Foundation launches Toncoin community rewards initiative worth over $100 million", d:"20 March 2024", href:"https://www.theblock.co/post/283660/ton-foundation-toncoin-community-rewards-initiative"},
+   {o:"The Block", t:"TON blockchain’s total value locked surpasses $300 million", d:"27 May 2024", href:"https://www.theblock.co/post/296794/ton-blockchains-total-value-locked-surpasses-300-million"},
+   {o:"The Block", t:"TON Society launches global Hackers League with $3.5M prize pool", d:"18 November 2024", href:"https://www.theblock.co/post/326826/ton-society-launches-global-hackers-league-with-3-5m-prize-pool"},
+   {o:"CoinDesk", t:"Telegram is crypto’s adoption machine", d:"20 June 2024", href:"https://www.coindesk.com/opinion/2024/06/20/telegram-is-cryptos-adoption-machine"},
+   {o:"YouTube", t:"TON Society vision, a talk by Jack Booth", d:"Talk", href:"https://www.youtube.com/watch?v=iz5Y0umy6n0"}]}
+ ]},
+
+"snoop": {n:3, fig:["talk",201], date:"TON Foundation, 2025", h:"The NFT market was dead.", stand:"So we sold $12M of Snoop Dogg collectibles inside Telegram.",
+ parts:[
+  {h:"The problem", b:[
+   "By February 2025 the NFT market was in shambles. Volumes were gone. Nobody had run a sale of real size in a long time.",
+   "I had just taken a new job at TON Foundation: build brand partnerships from zero, and grow the market for Telegram collectibles. In that market."]},
+  {h:"What I did", b:[
+   "I onboarded the team that brought Snoop Dogg to Telegram.",
+   "I co-produced the music video, “Gifts”. It came out at the moment of launch.",
+   "I organised TON Foundation’s side of the support. The part that mattered most was distribution. This was something new, pushed to people across the whole of Telegram at once. Arranging that was the job.",
+   "Around it I brought the big NFT names onto TON: Pudgy Penguins, Doodles, Bored Ape Yacht Club, Azuki and Moonbirds."]},
+  {h:"The result", figs:[
+   {n:"$12M", t:"sold in one drop."},
+   {n:"996,000", t:"collectibles bought."},
+   {n:"#1", t:"TON became the top blockchain by NFT trading volume."}]},
+  {h:"The work", work:[
+   {o:"TMZ", t:"Snoop Dogg’s Telegram digital gifts sell out", d:"9 July 2025", href:"https://www.tmz.com/2025/07/09/snoop-dogg-telegram-sell-out-digital-gifts/"},
+   {o:"CryptoNews", t:"BAYC and Pudgy Penguins launch on TON, making it the #1 NFT blockchain", d:"November 2024", href:"https://cryptonews.com/news/bayc-and-pudgy-penguins-launch-on-ton-making-it-the-1-nft-blockchain-is-5-toncoin-coming/"},
+   {o:"YouTube", t:"IP takeover on TON, an interview with Jack Booth", d:"Interview", href:"https://www.youtube.com/watch?v=syo2e2VlXs8"}]}
+ ]},
+
+"mint": {n:4, date:"Sterling, interim CMO at Mint, 2025", h:"A new launchpad needed its first big name to sell.", stand:"$450K of Telegram stickers, sold with Snoop Dogg and Bored Ape Yacht Club.",
+ parts:[
+  {h:"The problem", b:[
+   "Mint was a new launchpad for collectibles, built as a mini app inside Telegram. Stickers were a format most buyers had never paid for.",
+   "It needed a first drop big enough to prove the model."]},
+  {h:"What I did", b:[
+   "I ran marketing for the Snoop Dogg and Bored Ape Yacht Club drop as interim CMO.",
+   "Three things did the work. Film: a launch takeover and a run of teasers. A giveaway people wanted to win. And a merge mechanic that gave buyers a reason to keep collecting after the first pack.",
+   "The sale ran in stages: lock TON, whitelist sale, mint, then merge."]},
+  {h:"The result", figs:[
+   {n:"$450K", t:"of stickers sold."}]},
+  {h:"What I’d change", b:[
+   "It was too slow. The lock period put people off. Next time everything from lock to unwrap happens inside one week, with far more urgency to get in."]}
+ ]},
+
+"yuzuswap": {n:5, date:"Oasis, 2021 to 2022", h:"A new chain needed its first DeFi launch to land.", stand:"$180M locked in four days.",
+ parts:[
+  {h:"The problem", b:[
+   "Oasis was launching DeFi on its network. YuzuSwap was the first exchange built on it.",
+   "A first launch sets the tone for a chain. If it’s quiet, builders and money go elsewhere."]},
+  {h:"What I did", b:[
+   "I planned and led the launch: an airdrop to build the list, a pre-launch run across every channel, and a post-launch plan to keep liquidity in."]},
+  {h:"The result", figs:[
+   {n:"120,000", t:"people registered for the airdrop."},
+   {n:"$100M", t:"locked in the first 24 hours.", src:"Cointelegraph", href:"https://cointelegraph.com/news/first-dex-on-oasis-network-hits-100m-tvl-in-24-hours"},
+   {n:"$180M", t:"locked in four days. The fastest DeFi start on any layer 1, per DefiLlama."}]},
+  {act:"Then a slower problem."},
+  {h:"The second problem", b:[
+   "DeFi was pulling in short-term money. The long-term story wasn’t being told, so the people who build and hold weren’t hearing it."]},
+  {h:"What I did next", b:[
+   "I took it to the management team with a fix: a brand function separate from growth. Growth keeps its momentum. Brand owns the story.",
+   "Then I wrote the first of it myself. 35,000 words in two weeks: four manifestos and six long articles on Web3, the metaverse, NFTs and DeFi."]},
+  {h:"The work", work:[
+   {o:"Cointelegraph", t:"First DEX on Oasis Network hits $100M TVL in 24 hours", d:"January 2022", href:"https://cointelegraph.com/news/first-dex-on-oasis-network-hits-100m-tvl-in-24-hours"},
+   {o:"Blockworks", t:"Oasis ecosystem fund hits $200M after Binance Labs investment", d:"2022", href:"https://blockworks.co/news/oasis-ecosystem-fund-hits-200m-after-binance-labs-investment"},
+   {o:"Oasis", t:"The billion dollar data opportunity", d:"Article", href:"https://medium.com/oasis-protocol-project/the-billion-dollar-data-opportunity-that-pays-everyone-for-using-the-internet-16a51867d5bd"}]}
+ ]},
+
+"distributed": {n:6, date:"Distributed, Head of Marketing, 2020 to 2021", h:"Plenty of leads. No sales.", stand:"I changed the strategy. Marketing revenue went from £0 to £1M in a quarter.",
+ parts:[
+  {h:"The problem", b:[
+   "I was the first marketing hire. There was no strategy, no customer profile, no budget plan and no data to build one from."]},
+  {h:"What I did", b:[
+   "I wrote a six-month growth plan and tested every channel we could afford."]},
+  {h:"The result", figs:[
+   {n:"284%", t:"of the lead goal."},
+   {n:"126%", t:"of the opportunity goal."},
+   {n:"42%", t:"of the sales goal."}]},
+  {act:"The leads were fine. The brand wasn’t."},
+  {h:"The second problem", b:[
+   "The website converted. The funnel filled. Deals still didn’t close.",
+   "The problem was higher up. Enterprise buyers had never heard of us, and they don’t sign with companies they’ve never heard of."]},
+  {h:"What I did next", b:[
+   "I switched to brand first. We set out to own one idea, the future of work, and then put that fame in front of named target accounts.",
+   "PR, a podcast, a monthly content engine, and account-based marketing. A team of eight.",
+   "It took three more months of building before it moved."]},
+  {h:"The result", figs:[
+   {n:"£1M", t:"in marketing revenue in one quarter, from zero. £3M a year."},
+   {n:"140M", t:"readers reached across 11 publications."},
+   {n:"26% to 47%", t:"aided brand awareness, in one month."}]},
+  {h:"What followed", b:[
+   "BT signed as the first enterprise customer. Distributed raised a £5M Series A and made the Deloitte Fast 50.",
+   {quote:"One of the most talented marketers I’ve ever worked with.", by:"Callum Adamson, CEO of Distributed."}]},
+  {h:"The work", work:[
+   {o:"Distributed", t:"Distributed named a winner in the Deloitte Fast 50", d:"2021", href:"https://www.distributed.com/blog/distributed-winner-in-deloitte-fast-50"},
+   {o:"UKTN", t:"Distributed secures £5M Series A", d:"7 May 2021", href:"https://uktechnews.co.uk/2021/05/07/elastic-teams%EF%B8%8F-startup-distributed-secures-5m-series-a-to-support-explosive-growth-and-ambitious-plans/"}]}
+ ]},
+
+"rewardpay": {n:7, date:"In Marketing We Trust, 2018 to 2020", h:"$200K of media budget, and it had to count.", stand:"$60M in revenue in 14 months.",
+ parts:[
+  {h:"The problem", b:[
+   "RewardPay lets Australian businesses pay suppliers and tax bills with an American Express card, and earn the points.",
+   "The media budget was small. And nobody could say which ads produced paying customers. People signed up on a phone and made their first payment on a desktop, so the trail went cold in between."]},
+  {h:"What I did", b:[
+   "I ran the paid side across programmatic, video, display, out-of-home, native, paid social and search.",
+   "I split the message by trade. Tradies, medical practices and hospitality owners each got a customer like them on video, talking about their own cash flow.",
+   "And I rebuilt the tracking so it followed a customer from sign-up, to account created, to first payment. Reported weekly, by channel."]},
+  {h:"The result", figs:[
+   {n:"$60M", t:"in revenue."},
+   {n:"$200K", t:"in media spend."},
+   {n:"14", t:"months."}]}
+ ]}
+};
+var ORDER = ["freedurov","open-league","snoop","mint","yuzuswap","distributed","rewardpay"];
+</script>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var problems = [].slice.call(document.querySelectorAll('.problem'));
+  var index = document.getElementById('index');
+  var home = document.getElementById('view-home');
+  var caseEl = document.getElementById('view-case');
+  var wipe = document.getElementById('wipe');
+  var homeScroll = 0, current = 'home';
+
+  // build the index of seven
+  problems.forEach(function(p){
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = p.dataset.n;
+    b.setAttribute('aria-label', 'Problem ' + p.dataset.n + ': ' + p.querySelector('.q').textContent.trim());
+    b.addEventListener('click', function(){ jump(p, 0); });
+    index.appendChild(b);
+  });
+  var dots = [].slice.call(index.children);
+
+  function clamp(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function ease(t){ return 1 - Math.pow(1 - t, 3); }
+  function fmt(el, t){
+    var from = +(el.dataset.from || 0), to = +el.dataset.to;
+    var v = Math.round(from + (to - from) * ease(t));
+    var s = el.hasAttribute('data-comma') ? v.toLocaleString('en-GB') : String(v);
+    return (el.dataset.pre || '') + s + (el.dataset.suf || '');
+  }
+  // land on a problem with its answer already set
+  function jump(el, at){
+    var y = el.getBoundingClientRect().top + scrollY;
+    if (el.classList.contains('problem') && !reduce) y += (el.offsetHeight - innerHeight) * at;
+    scrollTo({top: y, behavior: reduce ? 'auto' : 'smooth'});
+  }
+
+  var ticking = false;
+  function frame(){
+    ticking = false;
+    if (current !== 'home') return;
+    var vh = innerHeight, active = -1;
+    problems.forEach(function(p, i){
+      var r = p.getBoundingClientRect();
+      if (r.top < vh * 0.5 && r.bottom > vh * 0.5) active = i;
+      if (reduce) return;
+      if (r.bottom < -vh || r.top > vh * 2) return;
+      var prog = clamp(-r.top / (p.offsetHeight - vh));
+      var s = clamp((prog - 0.14) / 0.2), o = clamp((prog - 0.36) / 0.2), a = clamp((prog - 0.46) / 0.26);
+      p.style.setProperty('--s', s.toFixed(3));
+      p.style.setProperty('--o', ease(o).toFixed(3));
+      p.style.setProperty('--r', a.toFixed(3));
+      var n = p.querySelector('.num'), txt = fmt(n, a);
+      if (n.textContent !== txt) n.textContent = txt;
+    });
+    dots.forEach(function(d, i){ d.setAttribute('aria-current', i === active ? 'true' : 'false'); });
+    var fin = home.querySelector('.finale').getBoundingClientRect().top;
+    index.classList.toggle('is-off', scrollY < vh * 0.6 || fin < vh * 0.7);
+  }
+  var mast = document.querySelector('.mast');
+  function onScroll(){ mast.classList.toggle('is-solid', scrollY > 24); if (!ticking){ ticking = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', onScroll, {passive: true});
+  addEventListener('resize', onScroll);
+
+  // in-page jumps that are not views
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('[data-jump]'); if (!a) return;
+    e.preventDefault();
+    if (a.dataset.jump === 'yours'){ jump((current === 'home' ? home : caseEl).querySelector('.finale'), 0); return; }
+    var go = function(){ jump(document.getElementById(a.dataset.jump), 0); };
+    if (current !== 'home'){ homeScroll = -1; location.hash = 'home'; setTimeout(go, reduce ? 0 : 520); } else go();
+  });
+
+  // halftone figure: ink dots at rest, ASCII where the pointer has been
+  var RAMP = " .,:;-=+*oa#%@", INK = '#12151B';
+  function Tone(cv){
+    var ctx = cv.getContext('2d'), img = new Image(), cols = 0, rows = 0, cell = 6, dpr = 1;
+    var dark = null, on = null, heat = null, raf = 0, sweep = -1, seen = false, scene = cv.dataset.mode === 'scene', who = null, RED = '#D3212C';
+    var word = cv.dataset.mode === 'word' ? cv.dataset.word : null;
+    function start(){ build(); new ResizeObserver(build).observe(cv);
+      new IntersectionObserver(function(es){ if (es[0].isIntersecting && !seen){ seen = true; pass(); } }, {threshold: 0.35}).observe(cv); };
+    img.onload = start;
+    if (word) (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start); else img.src = cv.dataset.src;
+    function build(){
+      var r = cv.getBoundingClientRect(); if (!r.width || !r.height) return;
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      cell = word ? Math.max(2.2, r.width / 104) : scene ? Math.max(4.6, Math.min(9, r.width / 210)) : Math.max(3.4, Math.min(8.5, r.height / (+cv.dataset.rows || 124)));
+      cols = Math.round(r.width / cell); rows = Math.round(r.height / cell);
+      cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+      var o = document.createElement('canvas'); o.width = cols; o.height = rows;
+      var oc = o.getContext('2d');
+      if (word){ // set the name as large as the tile allows, then read it back as a grid
+        oc.fillStyle = '#fff'; oc.fillRect(0, 0, cols, rows); oc.fillStyle = '#000'; oc.textBaseline = 'middle';
+        var fs = rows * 0.62; oc.font = '600 ' + fs + 'px "Hanken Grotesk",Arial,sans-serif';
+        var tw = oc.measureText(word).width; if (tw > cols * 0.94){ fs *= cols * 0.94 / tw; oc.font = '600 ' + fs + 'px "Hanken Grotesk",Arial,sans-serif'; }
+        oc.fillText(word, 1, rows * 0.54);
+      } else if (scene){ // cover the frame, keep his feet on the floor and him in view
+        var sc = Math.max(cols / img.width, rows / img.height), dw = img.width * sc, dh = img.height * sc;
+        var dx = Math.max(cols - dw, Math.min(0, cols * 0.5 - (+cv.dataset.focus || .5) * dw));
+        oc.drawImage(img, dx, rows - dh, dw, dh);
+      } else oc.drawImage(img, 0, 0, cols, rows);
+      var d; try { d = oc.getImageData(0, 0, cols, rows).data; } catch (e) { return; }
+      dark = new Float32Array(cols * rows); on = new Uint8Array(cols * rows); heat = new Float32Array(cols * rows);
+      who = scene ? new Uint8Array(cols * rows) : null;
+      for (var i = 0; i < cols * rows; i++){ dark[i] = 1 - d[i * 4] / 255; var m = d[i * 4 + (scene ? 1 : 3)] > 120 ? 1 : 0; if (scene){ on[i] = 1; who[i] = m; } else if (word){ on[i] = dark[i] > 0.12 ? 1 : 0; dark[i] = 0.35 + dark[i] * 0.65; } else on[i] = m; }
+      draw();
+    }
+    function fadeAt(x){ if (innerWidth <= 760) return 1; var t = (x / cols - 0.30) / 0.17; return t <= 0 ? 1 : t >= 1 ? 0 : 1 - t; }
+    function draw(){
+      if (!dark) return;
+      var c = cell * dpr; ctx.clearRect(0, 0, cv.width, cv.height); ctx.fillStyle = INK;
+      ctx.font = '700 ' + (c * 1.55).toFixed(1) + 'px ui-monospace,Menlo,Consolas,monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++){
+        var i = y * cols + x; if (!on[i]) continue;
+        var k = dark[i], h = heat[i], cx = (x + .5) * c, cy = (y + .5) * c;
+        if (scene && !who[i] && fadeAt(x) === 0) continue;
+        var base = scene && !who[i] ? RED : INK;
+        if (h > 0.04){
+          var j = k * (RAMP.length - 1) + (h > 0.45 ? (Math.random() - .5) * 5 * h : 0);
+          j = Math.max(1, Math.min(RAMP.length - 1, Math.round(j)));
+          ctx.fillStyle = scene && who[i] ? INK : RED; // type under the pointer is set in the pencil red
+          ctx.globalAlpha = Math.min(1, .6 + h); ctx.fillText(RAMP.charAt(j), cx, cy); ctx.globalAlpha = 1;
+        } else {
+          var rad = scene && !who[i] ? c * (0.5 * Math.pow(k, 1.9)) * fadeAt(x) : c * (0.1 + 0.4 * Math.pow(k, 1.05));
+          ctx.fillStyle = base; ctx.beginPath(); ctx.arc(cx, cy, rad, 0, 6.2832); ctx.fill();
+        }
+      }
+    }
+    function tick(){
+      raf = 0; var live = false, i;
+      if (sweep >= 0){ // a band of type passing down the figure, once
+        sweep += rows / 46;
+        for (var y = 0; y < rows; y++){ var g = 1 - Math.abs(y - sweep) / 9; if (g > 0) for (var x = 0; x < cols; x++){ i = y * cols + x; if (g > heat[i]) heat[i] = g; } }
+        if (sweep > rows + 10) sweep = -1; else live = true;
+      }
+      for (i = 0; i < heat.length; i++){ if (heat[i] > 0.04){ heat[i] *= 0.93; live = true; } else heat[i] = 0; }
+      draw(); if (live) raf = requestAnimationFrame(tick);
+    }
+    function kick(){ if (!raf && heat) raf = requestAnimationFrame(tick); }
+    function pass(){ if (reduce || !heat) return; sweep = -8; kick(); }
+    function touch(e){
+      if (reduce || !heat) return;
+      var r = cv.getBoundingClientRect(), px = (e.clientX - r.left) / cell, py = (e.clientY - r.top) / cell, R = 11;
+      for (var y = Math.max(0, Math.floor(py - R)); y < Math.min(rows, py + R); y++)
+        for (var x = Math.max(0, Math.floor(px - R)); x < Math.min(cols, px + R); x++){
+          var g = 1 - Math.hypot(x - px, y - py) / R, i = y * cols + x; if (g > heat[i]) heat[i] = g; }
+      kick();
+    }
+    // pick the figure up: it goes where the pointer goes, and the words beside it trail after
+    var box = cv.parentElement, held = false, sx = 0, sy = 0, ox = 0, oy = 0, tx = 0, ty = 0, tilt = 0, lastX = 0, vx = 0, fraf = 0;
+    var fol = [].map.call(box.querySelectorAll('[data-follow]'), function(el){ return {el: el, k: +el.dataset.follow, x: 0, y: 0}; });
+    function place(){ cv.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) rotate(' + tilt.toFixed(2) + 'deg)' + (held ? ' scale(1.025)' : ''); }
+    function follow(){
+      fraf = 0; var moving = false;
+      fol.forEach(function(f, i){
+        var gx = Math.max(f.x0, Math.min(f.x1, tx * f.k)), gy = Math.max(f.y0, Math.min(f.y1, ty * f.k)), ease = 0.16 - i * 0.018;
+        f.x += (gx - f.x) * ease; f.y += (gy - f.y) * ease;
+        if (Math.abs(gx - f.x) > .3 || Math.abs(gy - f.y) > .3) moving = true;
+        f.el.style.translate = f.x.toFixed(1) + 'px ' + f.y.toFixed(1) + 'px';
+      });
+      vx *= 0.8; var want = held ? Math.max(-5, Math.min(5, vx * 0.35)) : 0;
+      tilt += (want - tilt) * 0.2; if (Math.abs(tilt - want) > .02) moving = true; place();
+      if (moving || held) fraf = requestAnimationFrame(follow);
+    }
+    // the words may trail him, but never off the edge of their own section
+    function bounds(){
+      var b = box.getBoundingClientRect(), pad = 14;
+      fol.forEach(function(f){ var r = f.el.getBoundingClientRect(), l = r.left - f.x, t = r.top - f.y;
+        f.x0 = Math.min(0, b.left + pad - l); f.x1 = Math.max(0, b.right - pad - (l + r.width));
+        f.y0 = Math.min(0, b.top + 70 - t); f.y1 = Math.max(0, b.bottom - pad - (t + r.height)); });
+    }
+    bounds();
+    function go(){ if (!fraf) fraf = requestAnimationFrame(follow); }
+    cv.addEventListener('pointermove', function(e){
+      touch(e); if (!held) return;
+      var b = box.getBoundingClientRect(), nx = ox + e.clientX - sx, ny = oy + e.clientY - sy;
+      var lim = b.width * 0.72; tx = Math.max(-lim, Math.min(b.width * 0.12, nx)); ty = Math.max(-b.height * 0.45, Math.min(b.height * 0.2, ny));
+      vx += e.clientX - lastX; lastX = e.clientX; go();
+    });
+    cv.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'touch'){ pass(); return; }
+      touch(e); if (reduce || scene || word) return;
+      bounds(); held = true; sx = lastX = e.clientX; sy = e.clientY; ox = tx; oy = ty; cv.classList.add('is-held');
+      try { cv.setPointerCapture(e.pointerId); } catch (err) {} e.preventDefault(); go();
+    });
+    function drop(){ if (!held) return; held = false; cv.classList.remove('is-held'); go(); }
+    if (word && cv.closest('a')) cv.closest('a').addEventListener('pointerenter', pass);
+    cv.addEventListener('pointerup', drop); cv.addEventListener('pointercancel', drop);
+    cv.addEventListener('dblclick', function(){ if (scene || word) return; tx = ty = 0; pass(); go(); });
+  }
+  function mountTones(root){ [].forEach.call(root.querySelectorAll('canvas.tone'), function(c){ if (!c._tone){ c._tone = 1; Tone(c); } }); }
+
+  var FOOT = document.querySelector('#view-home .finale').outerHTML.replace(' id="yours"', '');
+
+  // case pages, rendered from CASES
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function block(x){
+    if (typeof x === 'string') return '<p>' + esc(x) + '</p>';
+    if (x.quote) return '<blockquote>“' + esc(x.quote) + '”<footer>' + esc(x.by) + '</footer></blockquote>';
+    if (x.post) return '<a class="post" href="' + esc(x.post.href) + '"><strong>' + esc(x.post.who) + '</strong><q>' + esc(x.post.q) + '</q><small>' + esc(x.post.src) + '</small></a>';
+    return '';
+  }
+  function render(key){
+    var c = CASES[key], h = '';
+    h += '<div class="head' + (c.fig ? ' has-fig' : '') + '">' + (c.fig ? '<canvas class="tone" data-src="img/' + c.fig[0] + '.png" style="aspect-ratio:' + c.fig[1] + '/520" role="img" aria-label="Jack Booth speaking on stage"></canvas>' : '') + '<p class="date">' + esc(c.date) + '. Problem ' + c.n + ' of seven.</p><h1 data-follow=".42"><span>' + esc(c.h) + '</span></h1><p class="stand" data-follow=".24">' + esc(c.stand) + '</p></div><div class="body">';
+    c.parts.forEach(function(p){
+      if (p.act){ h += '<p class="act">' + esc(p.act) + '</p>'; return; }
+      h += '<section class="part"><h2>' + esc(p.h) + '</h2>';
+      if (p.b) h += '<div class="copy">' + p.b.map(block).join('') + '</div>';
+      if (p.figs) h += '<div class="figs">' + p.figs.map(function(f){
+        var src = f.src ? '<small>' + (f.href ? '<a href="' + esc(f.href) + '">' + esc(f.src) + '</a>' : esc(f.src)) + '</small>' : '';
+        return '<div class="fig"><b>' + esc(f.n) + '</b><p>' + esc(f.t) + '</p>' + src + '</div>'; }).join('') + '</div>';
+      if (p.work) h += '<ul class="work">' + p.work.map(function(w){
+        return '<li><a href="' + esc(w.href) + '"><i>' + esc(w.o) + '</i><b>' + esc(w.t) + '</b><small>' + esc(w.d) + '</small></a></li>'; }).join('') + '</ul>';
+      h += '</section>';
+    });
+    h += '</div>';
+    var nx = ORDER[ORDER.indexOf(key) + 1];
+    h += '<div class="next">' + (nx
+      ? '<p>Problem ' + CASES[nx].n + ' of seven</p><a class="up" href="#' + nx + '">' + esc(CASES[nx].h) + '</a>'
+      : '<p>Problem eight</p><a class="up" href="#home" data-jump="yours">What’s yours?</a>')
+      + '<a class="back" href="#home">Back to all seven problems</a></div>'
+      + FOOT;
+    caseEl.innerHTML = h;
+    mountTones(caseEl);
+    document.title = c.h + ' Jack Booth';
+  }
+
+  // views: one name in the hash each
+  function show(name){
+    if (name !== 'home' && !CASES[name]) name = 'home';
+    if (name === current){ if (name === 'home') onScroll(); return; }
+    var toHome = name === 'home', fromHome = current === 'home';
+    if (fromHome) homeScroll = scrollY;
+    var swap = function(){
+      home.hidden = !toHome; caseEl.hidden = toHome; caseEl.classList.remove('is-in');
+      if (!toHome) render(name); else document.title = 'Jack Booth: seven problems';
+      current = name; index.hidden = !toHome;
+      scrollTo(0, toHome && homeScroll > 0 ? homeScroll : 0);
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        home.classList.remove('is-out'); caseEl.classList.remove('is-out');
+        (toHome ? home : caseEl).classList.add('is-in'); onScroll(); }); });
+    };
+    if (reduce){ swap(); return; }
+    home.classList.add('is-out'); caseEl.classList.add('is-out');
+    wipe.classList.remove('go'); void wipe.offsetWidth; wipe.classList.add('go');
+    setTimeout(swap, 300);
+  }
+  function route(){ show((location.hash || '#home').slice(1)); }
+  addEventListener('hashchange', route);
+
+  // the audit form has nowhere to send in this preview
+  document.addEventListener('submit', function(e){
+    var f = e.target.closest('form.audit'); if (!f) return;
+    e.preventDefault();
+    var note = f.querySelector('.note');
+    if (!f.handle.value.trim() || !/.+@.+\..+/.test(f.email.value)){
+      note.textContent = 'Add your X handle and an email address so the audit has somewhere to go.'; return;
+    }
+    note.innerHTML = 'This preview does not send yet. Until the form is connected, message <a href="https://t.me/jackk">t.me/jackk</a> on Telegram with your handle.';
+  });
+
+  mountTones(document);
+  home.classList.add('is-in');
+  route(); frame();
+})();
+</script>
+</body>
+</html>
