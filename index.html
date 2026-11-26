@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jack Booth: seven problems</title>
-<meta name="description" content="Jack Booth solves big marketing problems for crypto and AI founders. Seven problems, what he did, and what happened.">
+<title>Sterling: seven problems</title>
+<meta name="description" content="Sterling solves big marketing problems for crypto and AI founders. Fractional CMO and founder ghostwriting. Seven problems, what we did, and what happened.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="img/sterling-icon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -36,7 +39,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mast a{pointer-events:auto;text-decoration:none}
 .mast{transition:background .25s,padding .25s,border-color .25s;border-bottom:1px solid transparent}
 .mast.is-solid{background:color-mix(in srgb,var(--plate) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom-color:var(--hair);padding-top:15px;padding-bottom:15px;pointer-events:auto}
-.mast .name{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em}
+.mast .name{display:block;line-height:0}
+.mast .name img{display:block;height:34px;width:auto}
 .mast .ask{font-size:15px;font-weight:500;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:border-color .2s,color .2s}
 .mast .ask:hover{color:var(--pencil);border-color:var(--pencil)}
 
@@ -181,7 +185,7 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
 .pressgrid b{font-weight:500;font-size:1.02rem;line-height:1.3}
 .pressgrid small{font-size:14px;color:var(--tarnish)}
 .finale .sign{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding:clamp(28px,5vh,56px) var(--edge) clamp(22px,3.4vh,36px);background:var(--pencil);color:var(--plate)}
-.finale .sign b{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,11vw,11.5rem);line-height:.8;letter-spacing:-.04em}
+.finale .sign .mark{display:block;width:clamp(220px,44vw,760px);height:auto}
 .finale .sign div{display:grid;gap:4px;font-size:15px;text-align:right;padding-bottom:.4em}
 .finale .sign a{color:var(--plate);text-decoration:none;border-bottom:1px solid currentColor;justify-self:end}
 .finale .sign a:hover{color:var(--ink);border-color:var(--ink)}
@@ -210,7 +214,7 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
   .stage .q{max-width:none;top:calc(44% - var(--o) * (44% - 84px));transform:translateY(calc(-50% * (1 - var(--o)))) scale(calc(1 - var(--o) * .5))}
   .stage .a{bottom:92px}
   .stage .line p{max-width:none}
-  .mast .name{font-size:19px}
+  .mast .name img{height:28px}
 }
 @media (max-height:520px){
   .stage .q{font-size:clamp(1.5rem,9svh,2.4rem);max-width:none}
@@ -233,7 +237,7 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
 <a class="skip" href="#p1" data-jump="p1">Skip to the first problem</a>
 
 <header class="mast">
-  <a class="name" href="#home">Jack Booth</a>
+  <a class="name" href="#home" aria-label="Sterling, home"><img src="img/sterling-wordmark-ink.svg" alt="Sterling" width="74" height="28"></a>
   <a class="ask" href="#home" data-jump="yours">Request a free X audit</a>
 </header>
 
@@ -242,10 +246,10 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
 <!-- HOME -->
 <main class="view" id="view-home">
   <section class="open" id="top">
-    <canvas class="tone" data-src="img/mic.png" data-rows="140" role="img" aria-label="Jack Booth speaking on stage, holding a microphone"></canvas>
-    <h1><span data-follow=".5">I solve</span><span data-follow=".43">big marketing</span><span data-follow=".36">problems</span><span data-follow=".29">for founders.</span></h1>
+    <canvas class="tone" data-src="img/mic.png" data-rows="140" role="img" aria-label="Sterling’s founder speaking on stage, holding a microphone"></canvas>
+    <h1><span data-follow=".5">We solve</span><span data-follow=".43">big marketing</span><span data-follow=".36">problems</span><span data-follow=".29">for founders.</span></h1>
     <div class="sub" data-follow=".2">
-      <p>Fractional CMO and founder ghostwriter for crypto and AI companies. Here are seven problems I was handed, and what happened next.</p>
+      <p>Fractional CMO and founder ghostwriting for crypto and AI companies. Seven problems from our founder’s career, and what happened next.</p>
       <div class="cue"><i></i>Scroll. The first one starts in a French jail.</div>
     </div>
   </section>
@@ -255,7 +259,7 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
       <h2 class="q"><span>The CEO was in a French jail.</span></h2>
       <div class="a">
         <div class="num long" data-to="9000000" data-comma>9,000,000</div>
-        <div class="line"><p>people signed the letter I wrote to get him out.</p><a class="read" href="#freedurov">Read the #FreeDurov case</a></div>
+        <div class="line"><p>people signed the letter we wrote to get him out.</p><a class="read" href="#freedurov">Read the #FreeDurov case</a></div>
       </div>
     </div>
   </section>
@@ -265,7 +269,7 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
       <h2 class="q"><span>A blockchain beside 900 million users, and nobody using it.</span></h2>
       <div class="a">
         <div class="num" data-pre="$" data-from="28" data-to="780" data-suf="M">$780M</div>
-        <div class="line"><p>locked in TON DeFi, up from $28M, with 1.1 million daily active users. Then retention broke, and I fixed that too.</p><a class="read" href="#open-league">Read the Open League case</a></div>
+        <div class="line"><p>locked in TON DeFi, up from $28M, with 1.1 million daily active users. Then retention broke, and we fixed that too.</p><a class="read" href="#open-league">Read the Open League case</a></div>
       </div>
     </div>
   </section>
@@ -305,7 +309,7 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
       <h2 class="q"><span>Plenty of leads. No sales.</span></h2>
       <div class="a">
         <div class="num" data-pre="£" data-to="1" data-suf="M">£1M</div>
-        <div class="line"><p>in marketing revenue in one quarter, from zero, after I changed the strategy.</p><a class="read" href="#distributed">Read the Distributed case</a></div>
+        <div class="line"><p>in marketing revenue in one quarter, from zero, after we changed the strategy.</p><a class="read" href="#distributed">Read the Distributed case</a></div>
       </div>
     </div>
   </section>
@@ -322,10 +326,10 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
 
   <footer class="finale" id="yours">
     <section class="ask-scene">
-      <canvas class="tone" data-src="img/finale.png" data-mode="scene" data-focus=".216" role="img" aria-label="Jack Booth on stage, the lighting rig above him and the stage floor beneath his feet"></canvas>
+      <canvas class="tone" data-src="img/finale.png" data-mode="scene" data-focus=".216" role="img" aria-label="Sterling’s founder on stage, the lighting rig above him and the stage floor beneath his feet"></canvas>
       <div class="askbox">
         <h2>What’s yours?</h2>
-        <p class="pitch">Send me your X handle. I’ll send back a one-page audit: your three best posts, why they worked, and three to write next. Free.</p>
+        <p class="pitch">Send us your X handle. We’ll send back a one-page audit: your three best posts, why they worked, and three to write next. Free.</p>
         <form class="audit" novalidate>
           <label>Your X handle<input name="handle" autocomplete="off" placeholder="@yourhandle" required></label>
           <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@company.com" required></label>
@@ -339,7 +343,7 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
       <h2>The work, as reported</h2>
       <ul><li><a href="https://www.theblock.co/post/313292/set-telegram-ceo-durov-free-letter-surpasses-300000-signatures-on-messaging-app"><canvas class="tone" data-mode="word" data-word="The Block" role="img" aria-label="The Block"></canvas><b>Set Telegram CEO Durov free letter surpasses 2.7 million signatures</b><small>The Block. August 2024.</small></a></li><li><a href="https://techcrunch.com/2023/09/25/telegram-wechat-super-app-ton-foundation/"><canvas class="tone" data-mode="word" data-word="TechCrunch" role="img" aria-label="TechCrunch"></canvas><b>Telegram starts to look like a super app, echoing WeChat</b><small>TechCrunch. September 2023.</small></a></li><li><a href="https://www.cnbc.com/2024/04/19/messaging-app-telegram-to-allow-tether-stablecoin-payments.html"><canvas class="tone" data-mode="word" data-word="CNBC" role="img" aria-label="CNBC"></canvas><b>Telegram to allow Tether stablecoin payments</b><small>CNBC. April 2024.</small></a></li><li><a href="https://www.tmz.com/2025/07/09/snoop-dogg-telegram-sell-out-digital-gifts/"><canvas class="tone" data-mode="word" data-word="TMZ" role="img" aria-label="TMZ"></canvas><b>Snoop Dogg’s Telegram digital gifts sell out</b><small>TMZ. July 2025.</small></a></li><li><a href="https://www.coindesk.com/opinion/2024/06/20/telegram-is-cryptos-adoption-machine"><canvas class="tone" data-mode="word" data-word="CoinDesk" role="img" aria-label="CoinDesk"></canvas><b>Telegram is crypto’s adoption machine</b><small>CoinDesk. June 2024.</small></a></li><li><a href="https://cointelegraph.com/news/ton-raises-8-figure-sum-telegram-web3-super-app"><canvas class="tone" data-mode="word" data-word="Cointelegraph" role="img" aria-label="Cointelegraph"></canvas><b>TON raises 8-figure sum for Telegram Web3 super app</b><small>Cointelegraph. TON Foundation.</small></a></li><li><a href="https://cryptonews.com/news/bayc-and-pudgy-penguins-launch-on-ton-making-it-the-1-nft-blockchain-is-5-toncoin-coming/"><canvas class="tone" data-mode="word" data-word="CryptoNews" role="img" aria-label="CryptoNews"></canvas><b>BAYC and Pudgy Penguins launch on TON, making it the #1 NFT blockchain</b><small>CryptoNews. November 2024.</small></a></li><li><a href="https://cointelegraph.com/news/first-dex-on-oasis-network-hits-100m-tvl-in-24-hours"><canvas class="tone" data-mode="word" data-word="Cointelegraph" role="img" aria-label="Cointelegraph"></canvas><b>First DEX on Oasis Network hits $100M TVL in 24 hours</b><small>Cointelegraph. Oasis.</small></a></li><li><a href="https://blockworks.co/news/oasis-ecosystem-fund-hits-200m-after-binance-labs-investment"><canvas class="tone" data-mode="word" data-word="Blockworks" role="img" aria-label="Blockworks"></canvas><b>Oasis ecosystem fund hits $200M after Binance Labs investment</b><small>Blockworks. Oasis.</small></a></li><li><a href="https://uktechnews.co.uk/2021/05/07/elastic-teams%EF%B8%8F-startup-distributed-secures-5m-series-a-to-support-explosive-growth-and-ambitious-plans/"><canvas class="tone" data-mode="word" data-word="UKTN" role="img" aria-label="UKTN"></canvas><b>Distributed secures £5M Series A</b><small>UKTN. May 2021.</small></a></li></ul>
     </section>
-    <div class="sign"><b>Jack Booth</b><div><span>Sterling, founded 2025. Bangkok.</span><a href="https://t.me/jackk">Telegram: t.me/jackk</a><a href="#home" data-jump="top">Back to the first problem</a></div></div>
+    <div class="sign"><img class="mark" src="img/sterling-wordmark-light.svg" alt="Sterling"><div><span>Founded 2025.</span><a href="https://t.me/jackk">Telegram: t.me/jackk</a><a href="#home" data-jump="top">Back to the first problem</a></div></div>
   </footer>
 </main>
 
@@ -350,19 +354,19 @@ blockquote footer{all:unset;display:block;font-family:var(--sans);font-style:nor
 
 <script>
 var CASES = {
-"freedurov": {n:1, fig:["stage",240], date:"TON Foundation, August 2024", h:"The CEO was in a French jail.", stand:"I wrote the letter. Nine million people signed it.",
+"freedurov": {n:1, fig:["stage",240], date:"TON Foundation, August 2024", h:"The CEO was in a French jail.", stand:"We wrote the letter. Nine million people signed it.",
  parts:[
   {h:"The problem", b:[
    "On 24 August 2024, French police detained Pavel Durov at Le Bourget airport outside Paris. Durov founded Telegram. TON lives inside Telegram.",
    "Toncoin fell on the news. The community was loud and scattered, with no single thing to point at.",
-   "I was running marketing at TON Foundation. We needed one message, and one place for people to put their name to it. Fast."]},
-  {h:"What I did", b:[
+   "We were running marketing at TON Foundation. We needed one message, and one place for people to put their name to it. Fast."]},
+  {h:"What we did", b:[
    "We went loud on X first. The charge was simple: this arrest is political.",
    "Two days in, the President of France answered it himself.",
    {post:{who:"Emmanuel Macron on X, 26 August 2024", q:"It is in no way a political decision.", src:"As reported by the Associated Press", href:"https://www.pbs.org/newshour/world/macron-says-arrest-of-telegram-ceo-was-not-political"}},
-   "Then I wrote the letter. It was addressed to France and it asked for one thing: let him go.",
+   "Then we wrote the letter. It was addressed to France and it asked for one thing: let him go.",
    {quote:"A direct assault on a basic human right.", by:"From the #FreeDurov open letter, published by TON Society on 27 August 2024."},
-   "I helped design the mini app that carried it. People signed inside Telegram, the same app they were already using to talk about the arrest. No form on a website. No account to make."]},
+   "We helped design the mini app that carried it. People signed inside Telegram, the same app they were already using to talk about the arrest. No form on a website. No account to make."]},
   {h:"The result", figs:[
    {n:"2,064,678", t:"signatures in the first day.", src:"International Business Times, 28 August 2024", href:"https://ibtimes.com/open-letter-tied-tons-freedurov-campaign-gets-over-2m-signatures-1-day-3741069"},
    {n:"7 million", t:"nearly, three days in.", src:"International Business Times, 30 August 2024", href:"https://www.ibtimes.com/telegram-quietly-updates-faq-pavel-durov-breaks-silence-france-arrest-3742178"},
@@ -375,24 +379,24 @@ var CASES = {
    {o:"The Daily Hodl", t:"Toncoin community launches initiative to free Pavel Durov", d:"29 August 2024", href:"https://dailyhodl.com/2024/08/29/toncoin-blockchain-community-launches-initiative-to-free-telegram-founder-pavel-durov-after-france-arrest"}]}
  ]},
 
-"open-league": {n:2, fig:["walk",157], date:"TON Foundation, 2024", h:"A blockchain beside 900 million users, and nobody using it.", stand:"I built the programme that took TON from $28M to $780M. Then I had to fix what it broke.",
+"open-league": {n:2, fig:["walk",157], date:"TON Foundation, 2024", h:"A blockchain beside 900 million users, and nobody using it.", stand:"We built the programme that took TON from $28M to $780M. Then we had to fix what it broke.",
  parts:[
   {h:"The problem", b:[
    "TON sat inside Telegram, next to 900 million people. Its DeFi apps held $28M between them.",
    "The users were one tap away and they weren’t coming. Nobody had given them a reason to."]},
-  {h:"What I did", b:[
-   "I created The Open League. Monthly seasons. Projects competed on a public leaderboard for token rewards, and users earned by using them.",
+  {h:"What we did", b:[
+   "We created The Open League. Monthly seasons. Projects competed on a public leaderboard for token rewards, and users earned by using them.",
    "TON Foundation put 30 million Toncoin behind it, worth about $115M at launch. Season one started on 1 April 2024.",
-   "I led a marketing team of 14 at the Foundation through it."]},
+   "We led a marketing team of 14 at the Foundation through it."]},
   {h:"The result", figs:[
    {n:"$780M", t:"locked in TON DeFi, up from $28M."},
    {n:"1.1M", t:"daily active users."}]},
   {act:"Then it broke."},
   {h:"The second problem", b:[
    "People came for tap-to-earn rewards and left when the rewards did.",
-   "My read: we had put too much weight on tap-to-earn, and too little on building projects worth staying for. We were filling a room with nothing in it."]},
-  {h:"What I did next", b:[
-   "I co-founded TON Society as a separate company and moved the focus. Less activating users. More recruiting developers.",
+   "Our read: we had put too much weight on tap-to-earn, and too little on building projects worth staying for. We were filling a room with nothing in it."]},
+  {h:"What we did next", b:[
+   "We co-founded TON Society as a separate company and moved the focus. Less activating users. More recruiting developers.",
    "We built a grassroots events function across 11 hubs, with 60 people running them. In 2024 that meant 182 events and 35,000 attendees.",
    "The biggest was the Hackers League: bootcamps in 19 cities, then a global hackathon, from October to December 2024."]},
   {h:"The result", figs:[
@@ -403,19 +407,19 @@ var CASES = {
    {o:"The Block", t:"TON blockchain’s total value locked surpasses $300 million", d:"27 May 2024", href:"https://www.theblock.co/post/296794/ton-blockchains-total-value-locked-surpasses-300-million"},
    {o:"The Block", t:"TON Society launches global Hackers League with $3.5M prize pool", d:"18 November 2024", href:"https://www.theblock.co/post/326826/ton-society-launches-global-hackers-league-with-3-5m-prize-pool"},
    {o:"CoinDesk", t:"Telegram is crypto’s adoption machine", d:"20 June 2024", href:"https://www.coindesk.com/opinion/2024/06/20/telegram-is-cryptos-adoption-machine"},
-   {o:"YouTube", t:"TON Society vision, a talk by Jack Booth", d:"Talk", href:"https://www.youtube.com/watch?v=iz5Y0umy6n0"}]}
+   {o:"YouTube", t:"TON Society vision, a conference talk", d:"Talk", href:"https://www.youtube.com/watch?v=iz5Y0umy6n0"}]}
  ]},
 
 "snoop": {n:3, fig:["talk",201], date:"TON Foundation, 2025", h:"The NFT market was dead.", stand:"So we sold $12M of Snoop Dogg collectibles inside Telegram.",
  parts:[
   {h:"The problem", b:[
    "By February 2025 the NFT market was in shambles. Volumes were gone. Nobody had run a sale of real size in a long time.",
-   "I had just taken a new job at TON Foundation: build brand partnerships from zero, and grow the market for Telegram collectibles. In that market."]},
-  {h:"What I did", b:[
-   "I onboarded the team that brought Snoop Dogg to Telegram.",
-   "I co-produced the music video, “Gifts”. It came out at the moment of launch.",
-   "I organised TON Foundation’s side of the support. The part that mattered most was distribution. This was something new, pushed to people across the whole of Telegram at once. Arranging that was the job.",
-   "Around it I brought the big NFT names onto TON: Pudgy Penguins, Doodles, Bored Ape Yacht Club, Azuki and Moonbirds."]},
+   "We had just taken on a new brief at TON Foundation: build brand partnerships from zero, and grow the market for Telegram collectibles. In that market."]},
+  {h:"What we did", b:[
+   "We onboarded the team that brought Snoop Dogg to Telegram.",
+   "We co-produced the music video, “Gifts”. It came out at the moment of launch.",
+   "We organised TON Foundation’s side of the support. The part that mattered most was distribution. This was something new, pushed to people across the whole of Telegram at once. Arranging that was the job.",
+   "Around it we brought the big NFT names onto TON: Pudgy Penguins, Doodles, Bored Ape Yacht Club, Azuki and Moonbirds."]},
   {h:"The result", figs:[
    {n:"$12M", t:"sold in one drop."},
    {n:"996,000", t:"collectibles bought."},
@@ -423,7 +427,7 @@ var CASES = {
   {h:"The work", work:[
    {o:"TMZ", t:"Snoop Dogg’s Telegram digital gifts sell out", d:"9 July 2025", href:"https://www.tmz.com/2025/07/09/snoop-dogg-telegram-sell-out-digital-gifts/"},
    {o:"CryptoNews", t:"BAYC and Pudgy Penguins launch on TON, making it the #1 NFT blockchain", d:"November 2024", href:"https://cryptonews.com/news/bayc-and-pudgy-penguins-launch-on-ton-making-it-the-1-nft-blockchain-is-5-toncoin-coming/"},
-   {o:"YouTube", t:"IP takeover on TON, an interview with Jack Booth", d:"Interview", href:"https://www.youtube.com/watch?v=syo2e2VlXs8"}]}
+   {o:"YouTube", t:"IP takeover on TON, an interview", d:"Interview", href:"https://www.youtube.com/watch?v=syo2e2VlXs8"}]}
  ]},
 
 "mint": {n:4, date:"Sterling, interim CMO at Mint, 2025", h:"A new launchpad needed its first big name to sell.", stand:"$450K of Telegram stickers, sold with Snoop Dogg and Bored Ape Yacht Club.",
@@ -431,13 +435,13 @@ var CASES = {
   {h:"The problem", b:[
    "Mint was a new launchpad for collectibles, built as a mini app inside Telegram. Stickers were a format most buyers had never paid for.",
    "It needed a first drop big enough to prove the model."]},
-  {h:"What I did", b:[
-   "I ran marketing for the Snoop Dogg and Bored Ape Yacht Club drop as interim CMO.",
+  {h:"What we did", b:[
+   "We ran marketing for the Snoop Dogg and Bored Ape Yacht Club drop as Mint’s interim CMO.",
    "Three things did the work. Film: a launch takeover and a run of teasers. A giveaway people wanted to win. And a merge mechanic that gave buyers a reason to keep collecting after the first pack.",
    "The sale ran in stages: lock TON, whitelist sale, mint, then merge."]},
   {h:"The result", figs:[
    {n:"$450K", t:"of stickers sold."}]},
-  {h:"What I’d change", b:[
+  {h:"What we’d change", b:[
    "It was too slow. The lock period put people off. Next time everything from lock to unwrap happens inside one week, with far more urgency to get in."]}
  ]},
 
@@ -446,8 +450,8 @@ var CASES = {
   {h:"The problem", b:[
    "Oasis was launching DeFi on its network. YuzuSwap was the first exchange built on it.",
    "A first launch sets the tone for a chain. If it’s quiet, builders and money go elsewhere."]},
-  {h:"What I did", b:[
-   "I planned and led the launch: an airdrop to build the list, a pre-launch run across every channel, and a post-launch plan to keep liquidity in."]},
+  {h:"What we did", b:[
+   "We planned and led the launch: an airdrop to build the list, a pre-launch run across every channel, and a post-launch plan to keep liquidity in."]},
   {h:"The result", figs:[
    {n:"120,000", t:"people registered for the airdrop."},
    {n:"$100M", t:"locked in the first 24 hours.", src:"Cointelegraph", href:"https://cointelegraph.com/news/first-dex-on-oasis-network-hits-100m-tvl-in-24-hours"},
@@ -455,21 +459,21 @@ var CASES = {
   {act:"Then a slower problem."},
   {h:"The second problem", b:[
    "DeFi was pulling in short-term money. The long-term story wasn’t being told, so the people who build and hold weren’t hearing it."]},
-  {h:"What I did next", b:[
-   "I took it to the management team with a fix: a brand function separate from growth. Growth keeps its momentum. Brand owns the story.",
-   "Then I wrote the first of it myself. 35,000 words in two weeks: four manifestos and six long articles on Web3, the metaverse, NFTs and DeFi."]},
+  {h:"What we did next", b:[
+   "We took it to the management team with a fix: a brand function separate from growth. Growth keeps its momentum. Brand owns the story.",
+   "Then we wrote the first of it ourselves. 35,000 words in two weeks: four manifestos and six long articles on Web3, the metaverse, NFTs and DeFi."]},
   {h:"The work", work:[
    {o:"Cointelegraph", t:"First DEX on Oasis Network hits $100M TVL in 24 hours", d:"January 2022", href:"https://cointelegraph.com/news/first-dex-on-oasis-network-hits-100m-tvl-in-24-hours"},
    {o:"Blockworks", t:"Oasis ecosystem fund hits $200M after Binance Labs investment", d:"2022", href:"https://blockworks.co/news/oasis-ecosystem-fund-hits-200m-after-binance-labs-investment"},
    {o:"Oasis", t:"The billion dollar data opportunity", d:"Article", href:"https://medium.com/oasis-protocol-project/the-billion-dollar-data-opportunity-that-pays-everyone-for-using-the-internet-16a51867d5bd"}]}
  ]},
 
-"distributed": {n:6, date:"Distributed, Head of Marketing, 2020 to 2021", h:"Plenty of leads. No sales.", stand:"I changed the strategy. Marketing revenue went from £0 to £1M in a quarter.",
+"distributed": {n:6, date:"Distributed, Head of Marketing, 2020 to 2021", h:"Plenty of leads. No sales.", stand:"We changed the strategy. Marketing revenue went from £0 to £1M in a quarter.",
  parts:[
   {h:"The problem", b:[
-   "I was the first marketing hire. There was no strategy, no customer profile, no budget plan and no data to build one from."]},
-  {h:"What I did", b:[
-   "I wrote a six-month growth plan and tested every channel we could afford."]},
+   "We came in as the first marketing hire. There was no strategy, no customer profile, no budget plan and no data to build one from."]},
+  {h:"What we did", b:[
+   "We wrote a six-month growth plan and tested every channel we could afford."]},
   {h:"The result", figs:[
    {n:"284%", t:"of the lead goal."},
    {n:"126%", t:"of the opportunity goal."},
@@ -478,8 +482,8 @@ var CASES = {
   {h:"The second problem", b:[
    "The website converted. The funnel filled. Deals still didn’t close.",
    "The problem was higher up. Enterprise buyers had never heard of us, and they don’t sign with companies they’ve never heard of."]},
-  {h:"What I did next", b:[
-   "I switched to brand first. We set out to own one idea, the future of work, and then put that fame in front of named target accounts.",
+  {h:"What we did next", b:[
+   "We switched to brand first. We set out to own one idea, the future of work, and then put that fame in front of named target accounts.",
    "PR, a podcast, a monthly content engine, and account-based marketing. A team of eight.",
    "It took three more months of building before it moved."]},
   {h:"The result", figs:[
@@ -488,7 +492,7 @@ var CASES = {
    {n:"26% to 47%", t:"aided brand awareness, in one month."}]},
   {h:"What followed", b:[
    "BT signed as the first enterprise customer. Distributed raised a £5M Series A and made the Deloitte Fast 50.",
-   {quote:"One of the most talented marketers I’ve ever worked with.", by:"Callum Adamson, CEO of Distributed."}]},
+   {quote:"One of the most talented marketers I’ve ever worked with.", by:"Callum Adamson, CEO of Distributed, on Sterling’s founder."}]},
   {h:"The work", work:[
    {o:"Distributed", t:"Distributed named a winner in the Deloitte Fast 50", d:"2021", href:"https://www.distributed.com/blog/distributed-winner-in-deloitte-fast-50"},
    {o:"UKTN", t:"Distributed secures £5M Series A", d:"7 May 2021", href:"https://uktechnews.co.uk/2021/05/07/elastic-teams%EF%B8%8F-startup-distributed-secures-5m-series-a-to-support-explosive-growth-and-ambitious-plans/"}]}
@@ -499,10 +503,10 @@ var CASES = {
   {h:"The problem", b:[
    "RewardPay lets Australian businesses pay suppliers and tax bills with an American Express card, and earn the points.",
    "The media budget was small. And nobody could say which ads produced paying customers. People signed up on a phone and made their first payment on a desktop, so the trail went cold in between."]},
-  {h:"What I did", b:[
-   "I ran the paid side across programmatic, video, display, out-of-home, native, paid social and search.",
-   "I split the message by trade. Tradies, medical practices and hospitality owners each got a customer like them on video, talking about their own cash flow.",
-   "And I rebuilt the tracking so it followed a customer from sign-up, to account created, to first payment. Reported weekly, by channel."]},
+  {h:"What we did", b:[
+   "We ran the paid side across programmatic, video, display, out-of-home, native, paid social and search.",
+   "We split the message by trade. Tradies, medical practices and hospitality owners each got a customer like them on video, talking about their own cash flow.",
+   "And we rebuilt the tracking so it followed a customer from sign-up, to account created, to first payment. Reported weekly, by channel."]},
   {h:"The result", figs:[
    {n:"$60M", t:"in revenue."},
    {n:"$200K", t:"in media spend."},
@@ -713,7 +717,7 @@ var ORDER = ["freedurov","open-league","snoop","mint","yuzuswap","distributed","
   }
   function render(key){
     var c = CASES[key], h = '';
-    h += '<div class="head' + (c.fig ? ' has-fig' : '') + '">' + (c.fig ? '<canvas class="tone" data-src="img/' + c.fig[0] + '.png" style="aspect-ratio:' + c.fig[1] + '/520" role="img" aria-label="Jack Booth speaking on stage"></canvas>' : '') + '<p class="date">' + esc(c.date) + '. Problem ' + c.n + ' of seven.</p><h1 data-follow=".42"><span>' + esc(c.h) + '</span></h1><p class="stand" data-follow=".24">' + esc(c.stand) + '</p></div><div class="body">';
+    h += '<div class="head' + (c.fig ? ' has-fig' : '') + '">' + (c.fig ? '<canvas class="tone" data-src="img/' + c.fig[0] + '.png" style="aspect-ratio:' + c.fig[1] + '/520" role="img" aria-label="Sterling’s founder speaking on stage"></canvas>' : '') + '<p class="date">' + esc(c.date) + '. Problem ' + c.n + ' of seven.</p><h1 data-follow=".42"><span>' + esc(c.h) + '</span></h1><p class="stand" data-follow=".24">' + esc(c.stand) + '</p></div><div class="body">';
     c.parts.forEach(function(p){
       if (p.act){ h += '<p class="act">' + esc(p.act) + '</p>'; return; }
       h += '<section class="part"><h2>' + esc(p.h) + '</h2>';
@@ -734,7 +738,7 @@ var ORDER = ["freedurov","open-league","snoop","mint","yuzuswap","distributed","
       + FOOT;
     caseEl.innerHTML = h;
     mountTones(caseEl);
-    document.title = c.h + ' Jack Booth';
+    document.title = c.h + ' Sterling';
   }
 
   // views: one name in the hash each
@@ -745,7 +749,7 @@ var ORDER = ["freedurov","open-league","snoop","mint","yuzuswap","distributed","
     if (fromHome) homeScroll = scrollY;
     var swap = function(){
       home.hidden = !toHome; caseEl.hidden = toHome; caseEl.classList.remove('is-in');
-      if (!toHome) render(name); else document.title = 'Jack Booth: seven problems';
+      if (!toHome) render(name); else document.title = 'Sterling: seven problems';
       current = name; index.hidden = !toHome;
       scrollTo(0, toHome && homeScroll > 0 ? homeScroll : 0);
       requestAnimationFrame(function(){ requestAnimationFrame(function(){
